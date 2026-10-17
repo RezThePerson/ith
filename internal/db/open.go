@@ -4,8 +4,9 @@ import (
 	"database/sql"
 	_ "embed"
 	"fmt"
+	"os"
 
-	_ "modernc.org/sqlite"
+	_ "github.com/lib/pq"
 )
 
 var DB *sql.DB
@@ -13,10 +14,15 @@ var DB *sql.DB
 //go:embed schema.sql
 var schema string
 
-func Open() error {
+func Open() (err error) {
+	// Getting database URL
+	url := os.Getenv("DATABASE_URL")
+	if url == "" {
+		return fmt.Errorf("DATABASE_URL environment variable is not set")
+	}
+
 	// Opening database
-	var err error
-	if DB, err = sql.Open("sqlite", "frosting.sqlite3"); err != nil {
+	if DB, err = sql.Open("postgres", url); err != nil {
 		return fmt.Errorf("opening database: %w", err)
 	}
 

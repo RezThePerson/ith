@@ -1,2 +1,2 @@
-# ith - insert topic here.
+# ith - insert topic here
 

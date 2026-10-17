@@ -3,20 +3,20 @@ package main
 import (
 	"log/slog"
 	"os"
+
+	"github.com/reztheperson/ith/internal/db"
 )
 
 func main() {
 	// Opening DB
-	if err := db.Init(); err != nil {
-		slog.Error("Failed to initialize DB", "err", err)
+	if err := db.Open(); err != nil {
+		slog.Error("Failed to open DB", "err", err)
 		os.Exit(1)
 	}
-	slog.Info("DB Initialized")
+	slog.Info("DB Opened")
 
-	// Starting Web Server
-	slog.Info("Starting Web Server")
+	// Starting Api
 
-	// Starting Deployment Rounds
-	slog.Info("Starting Deployment Rounds")
-	rounds.Start()
+	slog.Info("Api Started")
+
 }
