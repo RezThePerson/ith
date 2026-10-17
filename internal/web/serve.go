@@ -1,7 +1,8 @@
-package api
+package web
 
 import (
 	"embed"
+	"fmt"
 	"io/fs"
 	"net/http"
 
@@ -12,16 +13,20 @@ import (
 var webFS embed.FS
 
 func Serve(r *mux.Router) error {
-	if err := InitTemplates(webFS); err != nil {
-		return err
-	}
-
-	staticFS, err := fs.Sub(webFS, "web")
+	// Setup static
+	staticFS, err := fs.Sub(webFS, "static")
 	if err != nil {
 		return err
 	}
 
-	r.PathPrefix("/static/").Handler(http.FileServer(http.FS(staticFS)))
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.FS(staticFS))))
+
+	// Initialize templates
+	if err := InitTemplates(webFS); err != nil {
+		return fmt.Errorf("Initializing templates: %w", err)
+	}
+
+	r.HandleFunc("/", HomeHandler)
 
 	return nil
 }

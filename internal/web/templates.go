@@ -1,9 +1,8 @@
-package api
+package web
 
 import (
 	"embed"
-	"log/slog"
-	"text/template"
+	"html/template"
 )
 
 var tmpl *template.Template
@@ -13,6 +12,5 @@ func InitTemplates(webFS embed.FS) (err error) {
 	if err != nil {
 		return err
 	}
-	slog.Info("templates loaded")
 	return nil
 }

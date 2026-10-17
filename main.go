@@ -4,6 +4,7 @@ import (
 	"log/slog"
 	"os"
 
+	"github.com/reztheperson/ith/internal/api"
 	"github.com/reztheperson/ith/internal/db"
 )
 
@@ -13,10 +14,10 @@ func main() {
 		slog.Error("Failed to open DB", "err", err)
 		os.Exit(1)
 	}
-	slog.Info("DB Opened")
 
 	// Starting Api
-
-	slog.Info("Api Started")
-
+	if err := api.Start(); err != nil {
+		slog.Error("Failed to start api", "err", err)
+		os.Exit(1)
+	}
 }
