@@ -9,16 +9,35 @@ css homeStyle() {
 	align-items: center;
 }
 
-css titleStyle() {
-	color: #cba6f7;
+css aboutStyle() {
+	max-width: 50rem;
 	text-align: center;
+}
+
+css authStyle() {
+	font-family: "Lexend", sans-serif;
+	background-color: #181825;
+	color: #cdd6f4;
+	cursor: pointer;
+	border: 0.15rem solid #45475a;
+	padding: 0.5rem 1rem;
 }
 
 templ Home() {
 	@Base("home") {
 		<main class={ homeStyle() }>
 			<h1 class={ titleStyle() }>[ith] aka [insert topic here]</h1>
-			<p>a tool designed for  tool to sugest (debate) topi</p>
+			<p class={ aboutStyle() }>
+				A tool designed to find topics and coordinate people's availability for
+				<a href="https://hackclub.slack.com/archives/C0A2BPB7202/p1792149498689939" target="_blank" class={ linkStyle() }>#eps-conduit</a>
+				debates in
+				<a href="https://hackclub.com" target="_blank" class={ linkStyle() }>Hack Club</a>.
+				However, you can always fork this project and modify it for your use case :)
+			</p>
+			<style> .auth-hover:hover {color: #cba6f7} </style>
+			<button class={ authStyle(), "auth-hover" }>
+				Continue with HCA
+			</button>
 		</main>
 	}
 }
