@@ -15,6 +15,8 @@ func main() {
 		os.Exit(1)
 	}
 
+	
+	
 	// Starting Api
 	if err := api.Start(); err != nil {
 		slog.Error("Failed to start api", "err", err)
