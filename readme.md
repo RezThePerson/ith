@@ -1,4 +1,4 @@
-!(internal/web/static/favicon.svg)[app logo]
+![app logo](internal/web/static/favicon.svg)
 
 # \[ith\] aka \[insert topic here\]
 
