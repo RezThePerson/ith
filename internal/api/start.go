@@ -5,27 +5,26 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/gorilla/mux"
 	"github.com/reztheperson/ith/internal/web"
 )
 
-func Start() (err error) {
-	r := mux.NewRouter()
+func Start() error {
+	mux := http.NewServeMux()
 
 	// Set up routes
-	if setupApiRoutes(r); err != nil {
-		return fmt.Errorf("Initializing api routes: %w", err)
+	if err := setupAPIRoutes(mux); err != nil {
+		return fmt.Errorf("initializing api routes: %w", err)
 	}
-	if web.InitTemplates(); err != nil {
-		return fmt.Errorf("Initializing templates: %w", err)
+	if err := web.InitTemplates(); err != nil {
+		return fmt.Errorf("initializing templates: %w", err)
 	}
-	if setupAppRoutes(r); err != nil {
-		return fmt.Errorf("Setting up app routes: %w", err)
+	if err := setupAppRoutes(mux); err != nil {
+		return fmt.Errorf("setting up app routes: %w", err)
 	}
 
 	// Serving routes
 	slog.Info("App successfully started", "port", ":8080")
-	if err := http.ListenAndServe(":8080", r); err != nil {
+	if err := http.ListenAndServe(":8080", mux); err != nil {
 		return fmt.Errorf("serving api routes: %w", err)
 	}
 

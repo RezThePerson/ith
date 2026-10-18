@@ -2,26 +2,24 @@ package api
 
 import (
 	"fmt"
+	"net/http"
 
-	"github.com/gorilla/mux"
 	"github.com/reztheperson/ith/internal/web"
 )
 
-func setupApiRoutes(r *mux.Router) error {
-
-	//
-
+func setupAPIRoutes(mux *http.ServeMux) error {
+	// API routes
 	return nil
 }
 
-func setupAppRoutes(r *mux.Router) error {
+func setupAppRoutes(mux *http.ServeMux) error {
 	// Static files
-	if err := web.SetupStatic(r); err != nil {
+	if err := web.SetupStatic(mux); err != nil {
 		return fmt.Errorf("setting up static routes: %w", err)
 	}
 
 	// Pages
-	r.HandleFunc("/", HomeHandler)
+	mux.HandleFunc("GET /{$}", HomeHandler)
 
 	return nil
 }

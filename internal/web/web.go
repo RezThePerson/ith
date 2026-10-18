@@ -5,8 +5,6 @@ import (
 	"html/template"
 	"io/fs"
 	"net/http"
-
-	"github.com/gorilla/mux"
 )
 
 //go:embed static/* templates/*
@@ -23,13 +21,13 @@ func InitTemplates() (err error) {
 	return nil
 }
 
-func SetupStatic(r *mux.Router) error {
+func SetupStatic(mux *http.ServeMux) error {
 	staticFS, err := fs.Sub(webFS, "static")
 	if err != nil {
 		return err
 	}
 
-	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.FS(staticFS))))
+	mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.FS(staticFS))))
 
 	return nil
 }
