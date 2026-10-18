@@ -12,15 +12,9 @@ func Start() error {
 	mux := http.NewServeMux()
 
 	// Set up routes
-	if err := setupAPIRoutes(mux); err != nil {
-		return fmt.Errorf("initializing api routes: %w", err)
-	}
-	if err := web.InitTemplates(); err != nil {
-		return fmt.Errorf("initializing templates: %w", err)
-	}
-	if err := setupAppRoutes(mux); err != nil {
-		return fmt.Errorf("setting up app routes: %w", err)
-	}
+	setupAPIRoutes(mux)
+	mux.Handle("GET /static/", http.FileServer(http.FS(web.StaticFS)))
+	setupPageRoutes(mux)
 
 	// Serving routes
 	slog.Info("App successfully started", "port", ":8080")

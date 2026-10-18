@@ -1,25 +1,16 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 
-	"github.com/reztheperson/ith/internal/web"
+	"github.com/a-h/templ"
+	"github.com/reztheperson/ith/internal/web/templates"
 )
 
-func setupAPIRoutes(mux *http.ServeMux) error {
-	// API routes
-	return nil
+func setupAPIRoutes(mux *http.ServeMux) {
+
 }
 
-func setupAppRoutes(mux *http.ServeMux) error {
-	// Static files
-	if err := web.SetupStatic(mux); err != nil {
-		return fmt.Errorf("setting up static routes: %w", err)
-	}
-
-	// Pages
-	mux.HandleFunc("GET /{$}", HomeHandler)
-
-	return nil
+func setupPageRoutes(mux *http.ServeMux) {
+	mux.Handle("GET /{$}", templ.Handler(templates.Home()))
 }
