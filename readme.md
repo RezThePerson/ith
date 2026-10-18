@@ -1,3 +1,5 @@
+!(internal/web/static/favicon.svg)[app logo]
+
 # \[ith\] aka \[insert topic here\]
 
 ```bash
