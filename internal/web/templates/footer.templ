@@ -1,7 +1,34 @@
 package templates
 
+css footerStyle() {
+	background-color: #11111b;
+	border-top: #45475a 0.25rem solid;
+	padding: 1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+css infoStyle() {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: right;
+}
+
+css badgeStyle() {
+	height: 3rem;
+}
+
+css linkStyle() {
+	color: #89b4fa;
+}
+
 templ Footer() {
-	<footer>
-		Made by rez
+	<footer class={ footerStyle() }>
+		<img class={ badgeStyle() } src="https://files.catbox.moe/ieis2b.svg"/>
+		<div class={ infoStyle() }>
+			<span>Made with :3 by <a href="https://github.com/reztheperson" target="_blank" class={ linkStyle() }>Rez</a></span>
+			<a href="https://github.com/reztheperson/ith" target="_blank" class={ linkStyle() }>Source code</a>
+		</div>
 	</footer>
 }

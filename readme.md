@@ -1,7 +1,7 @@
-# ith - insert topic here
+# \[ith\] aka \[insert topic here\]
 
 ```bash
-templ generate && go run main.go
+templ generate --proxy="http://localhost:8080" --watch --cmd="go run main.go"
 ```
 
 DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@[URL]:[PORT]/[DB-NAME]

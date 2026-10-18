@@ -1,9 +1,24 @@
 package templates
 
+css homeStyle() {
+	padding: 1rem;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+css titleStyle() {
+	color: #cba6f7;
+	text-align: center;
+}
+
 templ Home() {
 	@Base("home") {
-		<main>
-			<h1>ith - insert topic here</h1>
+		<main class={ homeStyle() }>
+			<h1 class={ titleStyle() }>[ith] aka [insert topic here]</h1>
+			<p>a tool designed for  tool to sugest (debate) topi</p>
 		</main>
 	}
 }
