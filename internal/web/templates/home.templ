@@ -35,9 +35,11 @@ templ Home() {
 				However, you can always fork this project and modify it for your use case :)
 			</p>
 			<style> .auth-hover:hover {color: #cba6f7} </style>
-			<button class={ authStyle(), "auth-hover" }>
-				Continue with HCA
-			</button>
+			<a href="/api/login">
+				<button class={ authStyle(), "auth-hover" }>
+					Continue
+				</button>
+			</a>
 		</main>
 	}
 }

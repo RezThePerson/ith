@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/reztheperson/ith/internal/api"
+	"github.com/reztheperson/ith/internal/http"
 )
 
 func main() {
@@ -16,9 +16,9 @@ func main() {
 		}
 	*/
 
-	// Starting API
-	if err := api.Start(); err != nil {
-		slog.Error("Failed to start API", "err", err)
+	// Starting http
+	if err := http.Start(); err != nil {
+		slog.Error("Failed to start http", "err", err)
 		os.Exit(1)
 	}
 }
