@@ -6,15 +6,12 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/reztheperson/ith/internal/web"
 )
 
 func Start() error {
 	r := mux.NewRouter()
 
 	// Set up routes
-	r.PathPrefix("/static/").Handler(http.FileServer(http.FS(web.StaticFS)))
-
 	setupAPIRoutes(r)
 	setupPageRoutes(r)
 
